@@ -1,0 +1,15 @@
+Erstellen eines lokalen Repositorys:
+1. Ordner erstellen
+	mkdir EuP
+2. Ordner mit git inist.
+	git init
+3.Datei erzeugen zum Testen
+	touch test.txt
+4. Datei zum Repositorys hinzufuegen
+	git add . -A
+5. Datei commiten 
+	gut commit -m "first commit"
+6. Das lokale Repos mit dem Remote Repos verbinden 
+	git remote add origin https.//github.com/stender1995/FIT5H_EuP.git
+7. Die lokalen Aenderungen zum Remot Repos hochladen
+	git push .u origin master 
