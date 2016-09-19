@@ -14,6 +14,7 @@ Erstellen eines lokalen Repositorys:
 	mkdir EuP
 2. Ordner mit git inist.
 	git init
+	#git init EuP erspart den mkdir-Befehl
 3.Datei erzeugen zum Testen
 	touch test.txt
 4. Datei zum Repositorys hinzufuegen
