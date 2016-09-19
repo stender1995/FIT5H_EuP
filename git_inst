@@ -19,9 +19,9 @@ Erstellen eines lokalen Repositorys:
 4. Datei zum Repositorys hinzufuegen
 	git add . -A
 5. Datei commiten 
-	gut commit -m "first commit"
+	git commit -m "first commit"
 6. Das lokale Repos mit dem Remote Repos verbinden 
-	git remote add origin https.//github.com/stender1995/FIT5H_EuP.git
+	git remote add origin https://github.com/stender1995/FIT5H_EuP.git
 7. Die lokalen Aenderungen zum Remot Repos hochladen
 	git push (-u) origin master 
 
