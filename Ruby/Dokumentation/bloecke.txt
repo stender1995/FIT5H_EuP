@@ -1,0 +1,7 @@
+Ruby verwendet für Definitionen, Wiederholungen, Abfragen ein Blockkonstrukt.
+
+Bsp:
+	3.times do 
+		puts "Irgentwas"
+	end
+	Bei der Wiederholung beginnnt der Block mit einem do und endet mit einem end.
