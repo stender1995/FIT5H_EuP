@@ -1,6 +1,12 @@
-comment = "Heute ist Dienstag"
+var = "Mikey loves Goonies"
 
-#Heute ist Dienstag wird 3 mal ausgespuckt
-3.times do 
-	puts comment.upcase
-end
+puts 'Mikey\'s favorite movie is Goonies'
+
+movie = "Goonies"
+
+puts 'Mikey\'s favorite movie is ' + movie 
+
+
+rank = 10
+
+puts "#{movie} has a rank of #{rank +2} am #{Time.new}"
