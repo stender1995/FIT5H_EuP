@@ -1,7 +1,7 @@
 
 
-def say_hello1(parameter1=100)
-	"Ich bin Ludwig mit einem Wert von #{parameter1} um #{set_time}"
+def say_hello1(health=100)
+	"Ich bin Ludwig mit einem Wert von #{health} um #{set_time}"
 	
 end
 
