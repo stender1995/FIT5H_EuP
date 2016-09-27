@@ -18,6 +18,51 @@ Objekt:
 
 Konstruktor:
 	Beim Erzeugen eines neuen Objektes mit Player.new wird automtisch eine Methode "initialize" aufgerufen. Diese Methode gibt es in jeder Ruby-Klasse. Es ist üblich diese existierende Methode mit einer eigenen Methode zu überschreiben, um dort die Basiswerte des Objektes festzulegen. 
+		Bsp:
+			def initialize(name, health)
+				@name = name
+				@helath = health
+			end 
 
+Instanzvariable/Eigenschaften
+	In der OOP hat ein Objekt bestímmte Eigenschaften, die es charakterisieren.
+	In Ruby werden diese Eigenschaften als Instanzvariablen definiert und ein "@" wird dem Namen vorangestellt.
+	Beispiel: @name 
+	Das Besondere einer Instanzvariable oder Eigenschaft ist, dass sie in der ganzen Klasse gilt und verwertet werden kann.
+	Wichtig: Variablen die innerhalb von einem Block definiert werden und kein @ vorangestellt haben, sind sogennante lokale Variablen und gelten nur innerhalb des Blockes in dem sié defieniert werden. 
 
-	
+Eine Instanzvariable wird zu einer Eigenschaft, indem es in der Klasse Methoden gibt, die den Zugriff von Außerhalb (Aufruf durch das Objekt) ermöglichen.
+Eine Eigenschaft hat einem sogennante Setter, der es ermöglicht einen Wert zu setzen; und einen Gettter, der einen Wert zurückgibt.
+
+Getter:
+	def name 
+		@name 
+	end 
+	Die Methode heisst genauso wie die Instandzvariable, ohne das @. Sie hat die Aufgabe, den Wert der Instanzvariable name zurückzugeben. 
+	Aufruf:
+		puts obj.name 
+		gibt den Namen des Players aus 
+	Kurzform: 
+		Anstelle einer Methodendefinition kann ich eine Kurzform verwenden:
+			attr_reader :name  
+
+Setter: 
+	def name=(name)
+		@name = name 
+	end 
+	Der Setter zum Speichern eines Wertes in einer instandsvariablen heisst wie die Instanzvariable mit einem = im Namen. 
+	Aufruf:
+		obj.name = "Supergirl"
+
+	Kurzform: 
+		attr_writer :title 
+Kurzform für Setter und Getter:
+	attr_accessor :name 
+
+Virtuelles Attribut:
+	Eine virtuelles Attribut ist eine Methode, die so aussieht, bzw. genutzt werden kann, wie eine Eigenschaft, die allerdings keine instanzvariable hat; also keine echte Eigenschaft ist, obwohl sie von außen so aussieht.
+	def normalized health
+		@health * 1000
+	end 
+	Aufruf:
+		puts obj.normalized_health 
