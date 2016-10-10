@@ -14,4 +14,11 @@ Werte hinzufügen
 	seats.push("wert5")
 
 Methoden von Arrays
- 
+ 	Array Groesse:
+		seats.size
+	Letztes Element entfernen
+		seats.pop
+	Array leer
+		seats.empty?
+	Löschen von Element
+		seats.delete_at(3)
