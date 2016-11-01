@@ -1,0 +1,40 @@
+If - Anweisungen 
+Die Überprüfung einer oder mehrere Bedingungen findet in if-Blöcke statt. 
+Müssen mehrere Bedingungen überprüft werden, dann findet eine Verknüpfung mit dem Und-operator statt:
+	if typ.is_a?(String) && typ.size > 2
+	Es müssen beide Bedingungen true sein, damit die Anweisungen in dem Block ausgeführt werden 
+Muss von mehreren Bedingungen eine zutreffen ist die Verwendungen des Oder-Operators sinnvoll:
+	if bedingung1 || bedignung2
+	Wenn einer der Bedingung zutrifft werden die Anweisungen im Block ausgeführt 
+
+If - elsif - else -end KONSTRUKT:
+
+	 def typ=(typ)
+	 	if 	!typ.is_a?(String) 
+	 		puts "Es war kein String"
+	 	elsif typ.size >= 3
+	 		puts "String zu kurz"
+	 	else 
+	 		puts typ.size 
+	 		#is_a?(String) prüft ob es ein String ist.
+	 	 	puts typ.is_a?(String)
+	 	 	#to_s = nur zahlen anzeigen lassen 
+	 	 	@typ = typ.to_s.capitalize	 			
+	 	end
+	 end
+
+Kurzform der if - Anweisung 
+		def ps=(ps)
+		 	@ps = ps if ps > 0 
+	 	end
+
+	 	Steht am Ende einer Anweisung( in der gleichen Zeile) eine if - Bedingung, dann wird die vorgeheende Anweisung(z.B.: Zuordnung eines Wertes) nur ausgeführt, wenn die Bedingung true ist. 
+
+Ternärer Operator:
+	Es gibt die Möglichkeit einen if-else-Block in einer Zeile auszuführen:
+		puts car.typ.empty? "Kein Wert" : car.typ 
+
+	Die Anweisung puts, also erzeuge eine Ausgabe, bekommt den Ẃert 'Kein Wert' falls die Bedingung 'car.typ == ""' leere ist; bzw. den aktuellen Objekt-Wert für 'typ' falls dieser gefüllt ist.
+
+	Das Fragezeichen it ein Operator der die linksstehende Bedingungen von dne auszuführenden Anweisungen trennt.
+	Der Doppelpunkt fungiert als Kurzform von 'else' 
