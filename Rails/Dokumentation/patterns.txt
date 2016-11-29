@@ -1,5 +1,6 @@
 MVC
 	Model - View - Controller auf verschiedenen, voneinander getrennten Ebenen
+	
 Convention Over Configuration 
 	Es gibt Regeln die eine Automatisierung durch den rails generator ermöglichen
 	z.B: 

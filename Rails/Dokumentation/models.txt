@@ -25,3 +25,6 @@ Alle Änderungen an einer Datenbank werden mit Hilfe von Migrationen erstellt, d
 Diese Migrations müssen mit einem seperaten Befhel zur Datenbank gesendet werden:
 	rake db:migrate 
 
+rake db:migrate
+
+schaut ob die migrate daten aktuell sind. Aktuellisieren sie sonst. 

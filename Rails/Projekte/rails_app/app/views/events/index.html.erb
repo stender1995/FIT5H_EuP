@@ -5,8 +5,7 @@
 		<li>
 			<%= event.name %>,
 			in: <%= event.location %>,
-			kostet: <%= event.price %>
+			kostet: <%= format_price(event) %>
 		</li>
 	<% end %>
-
 </ul>
