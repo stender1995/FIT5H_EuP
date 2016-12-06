@@ -11,7 +11,8 @@
 		<li>
 			<%= movie.title %>,
 			Rating: <%= movie.rating %>,
-			kostet: <%= movie.total_gross %>
+			kostet: <%= format_price(movie) %>
 		</li>
 	<% end %>
 </ul>
+

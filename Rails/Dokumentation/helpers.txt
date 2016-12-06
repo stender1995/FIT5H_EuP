@@ -1,0 +1,38 @@
+Es gibt HELPER sowohl auf der Darstellungsebene (View-Html-Bereich) als auch auf der Logik-Ebene im Bereich der Contoller 
+
+VIEW-Ebene 
+Helper, die von den Rails-Enwicklern zur Verfügung gestellt werden.
+Links:
+Beispiele:
+	truncate 
+	content_tag
+	number_to_curreny 
+
+b. eigenen Helper 
+- falls kein immanenter Helper zur Verfügung steht 
+- wenn ein Helper den Code in der HTML-Datei übersichtlicher/eleganter macht 
+- wenn Code sonst doppelt vorkommt 
+
+Es gibt im Bereich app einen speziellen ordner helpers, in dem der Rails-Server bei jeden Aufruf der Seite nach Funktionen scannt. Dort werden eigene Helper als einfache Methoden definiert.
+Beispiel:
+	app/helpers/events_helper.rb 
+
+	module EventsHelper
+
+		def format_price(event)
+			if event.price == 0
+				"<strong>Free</strong>".html_safe
+			else
+
+				number_to_currency event.price 
+			end
+			
+		end
+
+	end
+
+	Aufruf:
+	app/views/events/index.html.erb
+	<%= format_price(event) %>
+
+	
