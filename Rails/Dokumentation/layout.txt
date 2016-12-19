@@ -1,0 +1,25 @@
+im Ordner app/assets werden alle systlesheets javaskrit dateien und bilder abgelegt.
+
+Javaskript 
+	/app/javaskripts/application
+	Für Rails die Startdatei. Hier werden alle Dateien, die geladen werden sollen notiert
+	 z.B //# requiere ;quiery jquery ein 
+
+Stylesheets 
+	/app/sytlesheets/application.css
+		Rails Startdatei, alle hier notierten Anwednungen werdne ausgeführt.
+		z.B  *= require sytles bindet die Datei sytles.css ein.
+
+Image 
+	Rails sucht standardmäßig alle Bilder die mit dem Helper Image_tag eingebunden werden im Ordner:
+		/app/assets/images
+	z.B: <%= image_tag 'logo.jpg' %>
+
+Layout in Rails 
+	Standardmäßig gibt es in app/views einen Layout Ordner. Dort sind alle dateien, die dem DDesign der App zugeordnet sind, d.h Elemente, die bei allem Seitenaufrufen identisch sind, wie etwa Header, footer, navigation 
+	Wenn der Dispatcher die Anweisungen im Controller abgearbeitet hat und die Seiten zur Brwoser schícken wirt, dann sucht er standardmäßig die Datei: app/views/layouts/application.html.erb
+		In dieser Stelle gibt es den Aufruf  >%= yield %> in dem der jeweils spezielle Seiteninhalte eingefügtt wird.
+
+Foundation 
+	Zur Foundation ist  ein CSS-Framwork, das mit Rails gut zusammenarbeitet.
+	Das Einbinden wird unter http://foundation.zurb.com/sites/docs/v/5.5.3/applications.html beschrieben.
