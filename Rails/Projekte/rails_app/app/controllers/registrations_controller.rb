@@ -1,10 +1,10 @@
 class RegistrationsController < ApplicationController
   before_action :set_registration, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_event 
   # GET /registrations
   # GET /registrations.json
   def index
-    @registrations = Registration.all
+    @registrations = @event.registrations
   end
 
   # GET /registrations/1
@@ -65,6 +65,11 @@ class RegistrationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_registration
       @registration = Registration.find(params[:id])
+    end
+
+    def set_event
+        @event = Event.find(params[:event_id])
+      
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
