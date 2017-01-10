@@ -1,0 +1,24 @@
+Die Definition der Abhängigkeit von Resourcen wird in der config/routes.rb festgelegt.
+
+	resources events do 
+		resources :registrations
+	end 
+	Die Registrations-Resource ist der Event-Resource untergeordnet
+
+2. Falls die Resource registrations mit einem Scaffold angelegt wurde, müssen alle Links geändert werden. 
+
+3. Im Registrations-Controller sollte eine Before-Methode definiert sein, die bei jeder Action des Controllers eine Instanzvariable @event erzeugt.
+
+	def set_event
+		@event = Event.find(params[:event_id])
+	end 
+
+4. In der Index-Action sollten nur die Elemente gefunden werden, die zu diesem Event gehören. 
+	@registrations = @event.regstrations 
+
+5. In der new und edit - Action muss sichergestellt sein, dass die Event-ID
+mitgeliefert wird:
+	@registartion = @event.registartions.new 
+
+6. Im Formular muss der Link zur Craete und/oder Update - Action angepasst werden. 
+	<%= form_for([@event.@registration]) do |f| %>

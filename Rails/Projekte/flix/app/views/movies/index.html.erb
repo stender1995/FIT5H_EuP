@@ -8,11 +8,14 @@
 
 <ul>
 	<% @movies.each do |movie| %>
-		<li>
-			<%= movie.title %>,
-			Rating: <%= movie.rating %>,
-			kostet: <%= format_price(movie) %>
-		</li>
+		<table>
+			<tr>
+			<td><%= movie.title %>,</td>
+			<td>Rating: <%= movie.rating %>,</td>
+			<td>kostet: <%= format_price(movie) %></td>
+			<td><%= link_to 'Edit', edit_movie_path(movie.id) %></td>
+			</tr>
+		</table>
 	<% end %>
 </ul>
 

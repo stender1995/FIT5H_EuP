@@ -1,0 +1,61 @@
+1. Erstellen sie eine Applikation books 
+rails new <projekt_name>
+cd <projekt_name>
+
+2. Css Foundation miteinbringen 
+
+link: http://foundation.zurb.com/sites/docs/v/5.5.3/applications.html
+
+		1) gem 'foundation-rails'		#unter Gemfile hinzufuegen
+		2) bundle install				#in Konsole
+		3) rails g foundation:install 	#in Konsole -> Y
+		4)    <%= javascript_include_tag "vendor/modernizr" %>		#in app/views/layouts/application.html.erb	hinzufügen
+		5)    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>		#muss auch vorhanden sein, ggf hinzufügen
+		6) unter app/assets/stylesheets unter application.css  '*= require foundation' hinzufuegen
+		7) von http://foundation.zurb.com/sites/docs/top-bar.html die topbar kopieren und unter app/views/layouts als z.B. _top_bar.html.erb speichern
+		8) in die application.html.erb -> ' <%= render 'layouts/top_bar' %>' hinzufuegen
+
+3.Erstellen sie eine Resource books mit dem Spalten author, title ,description ( text ) , published_on ( date ) 
+
+rails g scaffold book (name:string location:string price:decimal)
+rake db:migrate
+
+4. Stellen Sie sicher, dass beim Aufruf der Seite die index Action der resource books aufgerufen wird
+	root 'books#index'
+
+5. Erstellen Sie einen Link in der Navigationsleiste, der auf die Index-Seite verweist.
+
+- localhost:3000/books
+
+- top bar erstellen
+
+- links anzeigen lassen # was falsches angeben
+
+- links ändern (<%= link_to 'Zurück', books_path %>) # auf der Top_bar Seite
+
+6. Erstellen Sie eine untergeordnete Resource LIKES, die eine Spalte quality (integer) hat. Sichern Sie ab, dass ein Like immer einem Book-Objekt zugeordnet ist. 
+
+- rails g scaffold likes quality:integer book:references
+
+7. Stellen Sie sicher, dass der Benutzer bei der Neuanlage/Update eines Likes eine Zahl von 1 bis 5 eingeben muss. Ansonsten wird ds Formular nicht gespeichert.
+
+projekte/rails_app/model/regestration.rb
+
+ validates :how_heard, inclusion: { in: HOW_HEARD_OPTIONS }
+
+8. Erstellen Sie einen View-Helper, der für ein Book-Objekt den Durchschnitt aller Links für dieses Objekt errechnet und auf der Book-Show
+
+app/helpers/books_helper.rb 
+
+		module EventsHelper
+
+			def format_price(event)
+				if event.free?
+					#"<strong>Free</strong>".html_safe
+					content_tag(:strong, 'FREE')
+				else
+					number_to_currency(event.price, unit: "€", separator: ",", delimiter: ".", format: 	"%n %u")
+				end
+			end
+		end
+
