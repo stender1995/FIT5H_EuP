@@ -1,10 +1,11 @@
 class LikesController < ApplicationController
   before_action :set_like, only: [:show, :edit, :update, :destroy]
+  before_action :set_book
 
   # GET /likes
   # GET /likes.json
   def index
-    @likes = Like.all
+    @likes = @book.likes
   end
 
   # GET /likes/1
@@ -14,7 +15,7 @@ class LikesController < ApplicationController
 
   # GET /likes/new
   def new
-    @like = Like.new
+    @like = @book.likes.new
   end
 
   # GET /likes/1/edit
@@ -24,11 +25,11 @@ class LikesController < ApplicationController
   # POST /likes
   # POST /likes.json
   def create
-    @like = Like.new(like_params)
+    @like = @book.likes.new(like_params)
 
     respond_to do |format|
       if @like.save
-        format.html { redirect_to @like, notice: 'Like was successfully created.' }
+        format.html { redirect_to book_like_path(@book.id, @like.id), notice: 'Like was successfully created.' }
         format.json { render :show, status: :created, location: @like }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class LikesController < ApplicationController
   def update
     respond_to do |format|
       if @like.update(like_params)
-        format.html { redirect_to @like, notice: 'Like was successfully updated.' }
+        format.html { redirect_to book_like_path(@book.id, @like.id), notice: 'Like was successfully updated.' }
         format.json { render :show, status: :ok, location: @like }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class LikesController < ApplicationController
   def destroy
     @like.destroy
     respond_to do |format|
-      format.html { redirect_to likes_url, notice: 'Like was successfully destroyed.' }
+      format.html { redirect_to book_likes_url(@book.id), notice: 'Like was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,6 +66,11 @@ class LikesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_like
       @like = Like.find(params[:id])
+    end
+
+    def set_book
+        @book = Book.find(params[:book_id])
+      
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

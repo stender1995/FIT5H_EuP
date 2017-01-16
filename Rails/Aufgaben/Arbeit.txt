@@ -36,6 +36,40 @@ rake db:migrate
 6. Erstellen Sie eine untergeordnete Resource LIKES, die eine Spalte quality (integer) hat. Sichern Sie ab, dass ein Like immer einem Book-Objekt zugeordnet ist. 
 
 - rails g scaffold likes quality:integer book:references
+- rake db:migrate
+config/routes.rb
+
+					resources :books do
+					resources :likes
+  					end
+
+-----------------------------------------------------------------------------------
+ÄNDERN:
+		controllers/likes_controller.rb
+		  before_action :set_book
+
+		      def set_book
+			        @book = Book.find(params[:book_id])
+			      
+			  end
+
+		models/book.rb 	  -> has_many :likes
+		models/like.rb 	  -> belongs_to :book
+		views/books/index -> ... 'Like', book_likes_path(book) %></td>
+ZEILE 1	views/likes/_form -> <%= form_for([@book, @like]) do |f| %>
+		views/likes/edit ->  ... 'Show', book_like_path(@book.id, @like.id) %>
+							 ... 'Back', book_likes_path(@book.id) %>
+		views/likes/index -> ... 'Show', book_like_path(@book.id, like.id) %>
+        					 ... 'Edit', edit_book_like_path(@book.id, like.id) %>
+        					 ... 'Destroy', book_like_path(@book.id, like.id)
+							 ... 'New Like', new_book_like_path %>
+		views/likes/new ->   ... 'Back', new_book_like_path %>
+		views/likes/show ->  ... 'Edit', edit_book_like_path(@like) %> 
+							 ... 'Back', book_likes_path %>
+		db/migrate/create_likes -> t.integer :book_id  
+------------------------------------------------------------------------------------
+
+rake db:migrate
 
 7. Stellen Sie sicher, dass der Benutzer bei der Neuanlage/Update eines Likes eine Zahl von 1 bis 5 eingeben muss. Ansonsten wird ds Formular nicht gespeichert.
 
