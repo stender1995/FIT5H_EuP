@@ -17,7 +17,7 @@ link: http://foundation.zurb.com/sites/docs/v/5.5.3/applications.html
 
 3.Erstellen sie eine Resource books mit dem Spalten author, title ,description ( text ) , published_on ( date ) 
 
-rails g scaffold book (name:string location:string price:decimal)
+rails g scaffold book name:string location:string price:decimal
 rake db:migrate
 
 4. Stellen Sie sicher, dass beim Aufruf der Seite die index Action der resource books aufgerufen wird
@@ -40,22 +40,25 @@ rake db:migrate
 config/routes.rb
 
 					resources :books do
-					resources :likes
-  					end
+						resources :likes
+  							end
 
+# andere resources löschen 
 -----------------------------------------------------------------------------------
 ÄNDERN:
 		controllers/likes_controller.rb
 		  before_action :set_book
 
+
+
 		      def set_book
-			        @book = Book.find(params[:book_id])
+			        @book = Book.find(params[:book_id]) #### vor params einfügen
 			      
 			  end
 
 		models/book.rb 	  -> has_many :likes
 		models/like.rb 	  -> belongs_to :book
-		views/books/index -> ... 'Like', book_likes_path(book) %></td>
+		views/books/index -> ... 'Like', book_likes_path(book) %></td>  ##### hinzufügen des Linkes 
 ZEILE 1	views/likes/_form -> <%= form_for([@book, @like]) do |f| %>
 		views/likes/edit ->  ... 'Show', book_like_path(@book.id, @like.id) %>
 							 ... 'Back', book_likes_path(@book.id) %>
@@ -75,7 +78,7 @@ rake db:migrate
 
 projekte/rails_app/model/regestration.rb
 
- validates :how_heard, inclusion: { in: HOW_HEARD_OPTIONS }
+ validates :quality, numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5}
 
 8. Erstellen Sie einen View-Helper, der für ein Book-Objekt den Durchschnitt aller Links für dieses Objekt errechnet und auf der Book-Show
 

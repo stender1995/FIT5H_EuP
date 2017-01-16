@@ -11,6 +11,26 @@ Andere Methode:
 Anzeigen aller Events:
 	Event.all
 
+E anzeugen lassen 
+	e=Book.last
+
 Suchen eines speziellen Events:
 	Event.file_by(name: "Eventname") 
 
+Hinzufügen:
+
+e.likes.create(quality: 2)
+
+e.likes
+
+Spalte hinzufügen:
+rails g migration AddFieldToLikes description:text
+-Form ändern
+-index ändern von likes
+
+rake db:migrate
+
+Spaltennamen ändern:
+rails g migration #### hilfe holen
+
+rails g migration ChangeTableLike
