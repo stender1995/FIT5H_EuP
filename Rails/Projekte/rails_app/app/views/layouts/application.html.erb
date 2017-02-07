@@ -14,21 +14,15 @@
 
   <body>
     <div class="row">
-    
-<<<<<<< HEAD
       <div class="row float-right">
-=======
-      <div class="row float">
->>>>>>> ab48a35154bf86a13ffa76948197016cf19b36e4
-        <%= image_tag 'logo.jpg' %>  
+        <%= image_tag 'logo.png' %>  
       </div>
-      <div class="clearfix">
+      <div class="clearfix"></div>
       
       <%= render 'layouts/top_bar' %>
 
-      </div>
-
       <div class="row">
+        <%= render 'layouts/flash_messages' %>
         <div class="medium-3 columns">
           <%= render 'layouts/side_bar' %>
         </div>

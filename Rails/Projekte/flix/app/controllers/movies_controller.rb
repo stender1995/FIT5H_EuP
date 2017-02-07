@@ -1,11 +1,12 @@
 class MoviesController < ApplicationController
-	before_action :set_movie, only: [:show, :edit, :update]
+	before_action :set_movie, only: [:show, :edit, :update, :destroy]
+	before_action :require_signin, :except => [:index]
 	def index
 		@movies = Movie.all
 	end
 
-	def show
-		
+	def show 
+  		@favouriter = @movie.favouriter
 	end
 
 	def new
@@ -13,17 +14,25 @@ class MoviesController < ApplicationController
 	end
 
 	def create
-		@movie = Movie.create(movie_params)
-		redirect_to movies_path
+		@movie = Movie.new(movie_params)
+		if @movie.save
+			redirect_to movies_path
+		else 
+			render :new
+		end
 	end
 
 	def edit
-
+ 
 	end
 
 	def update
-
 		@movie.update(movie_params)
+		redirect_to movies_path
+	end
+
+	def destroy
+		@movie.destroy
 		redirect_to movies_path
 	end
 
@@ -31,8 +40,8 @@ class MoviesController < ApplicationController
 		def set_movie
 			@movie = Movie.find(params[:id])
 		end
-
 		def movie_params
-			params.require(:movie).permit(:title, :rating, :total_gross)
+			params.require(:movie).permit(:name, :description, :released_on)
 		end
 end
+  

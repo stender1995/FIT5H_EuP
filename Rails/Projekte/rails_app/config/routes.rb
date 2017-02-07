@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
- 	root 'events#index'
+  
+  resources :categories
+  resources :likes
+  root 'events#index'
+  
+  get 'signup' => 'users#new'
 
-  resources :events do 
-  resources :registrations 
-end
+  resource :session
+  resources :users
+  resources :events do
+  		resources :likes
+		resources :registrations
+
+  end
 end

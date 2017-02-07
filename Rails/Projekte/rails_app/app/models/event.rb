@@ -1,14 +1,14 @@
 class Event < ApplicationRecord
+	has_many :registrations, :dependent => :destroy
+	has_many :likes, dependent: :destroy
+	has_many :likers, through: :likes, source: :user
 
-<<<<<<< HEAD
-	validates :name, :presence:true
-=======
-	has_many :registrations, dependent: :destroy
+	has_many :categorizations, dependent: :destroy 
+	has_many :categories, through: :categorizations
 
-	validates :name, presence: true
-	validates :description, length: {minimum: 25}
-	validates :price, numericality: {greater_than_or_equal_to: 0}
->>>>>>> ab48a35154bf86a13ffa76948197016cf19b36e4
+	validates :name, :description, :location, presence: true
+	validates :description, length: { minimum: 25 }
+	validates :price, numericality: { greater_than_or_equal_to: 0 }
 
 	def free?
 		price.blank? || price.zero?

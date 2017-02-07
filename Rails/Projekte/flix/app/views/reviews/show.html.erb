@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @movie.name %></h2>
 
 <p>
   <strong>Name:</strong>
@@ -20,5 +20,9 @@
   <%= @review.movie_id %>
 </p>
 
-<%= link_to 'Edit', edit_review_path(@review) %> |
-<%= link_to 'Back', reviews_path %>
+
+
+
+<%= link_to 'Edit', edit_movie_review_path(@movie.id, @review.id) %> |
+<%= link_to 'Back', movie_reviews_path(@movie.id) %>
+    
