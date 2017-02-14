@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+	<% if @favourited_movies.any? %>
+		<h3>Liked Movies</h3>
+
+			<p>
+				<ul>
+					<% @favourited_movies.each do |movie| %>
+						<li><%= movie.title %></li>
+					<% end %>
+				</ul>
+
+			</p>
+	<% end %>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

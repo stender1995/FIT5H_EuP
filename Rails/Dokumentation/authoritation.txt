@@ -1,0 +1,77 @@
+1. views/layouts/_top_bar
+
+		<li class="menu-text">RAILS APP</li>
+		<li><%= link_to 'Projekte', root_path %></li>
+		<li><%= link_to 'Users', users_path if current_user %></li>
+
+2. 	Rausschmeißen=
+      	<li>
+        	<a href="#">One</a>
+        	<ul class="menu vertical">
+          	<li><a href="#">One</a></li>
+          	<li><a href="#">Two</a></li>
+          	<li><a href="#">Three</a></li>
+        	</ul>
+      	</li>
+    	  <li><a href="#">Two</a></li>
+	      <li><a href="#">Three</a></li
+
+3. rails_app/app/controllers/events_controller.rb
+
+		before_action :require_signin, exçept: [:index]
+
+    before_action :require_admin, :except => [:index, :show]
+
+4.	rails_app/app/controllers/users_controller.rb
+
+  		before_action :require_signin, except: [:new, :create]
+  		before_action :require_correct_user, only: [:edit, :update, :destroy]
+
+  		def require_correct_user 
+    		unless current_user ==  @user
+     	 	redirect_to users_url, alert:"DU, du, du. Darfst du das?"
+  			end
+		    
+		end
+
+	
+
+		  def create
+  			  @user = User.new(user_params)
+
+   		 respond_to do |format|
+    		  if @user.save
+        		session[:user_id] = @user.id
+
+5. 	rails_app/app/controllers/applicatioǹ_controller.rb
+
+		def require_signin
+			unless current_user 
+				redirect_to new_session_url, alert:"Please sign in first!!!"
+			end
+			
+		end
+
+
+  def require_admin
+    unless current_user && current_user.admin?
+      redirect_to root_url, alert:"Du etwa admin? Penner!"
+    end
+    
+  end
+
+
+
+  def current_user_admin?
+    current_user && current_user.admin?
+     
+   end 
+
+  helper_method :current_user_admin?
+
+
+6. 	rails_app/app/controllers/registration_controller.rb
+
+ 		before_action :require_signin
+
+7. 	

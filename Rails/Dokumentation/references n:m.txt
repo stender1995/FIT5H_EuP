@@ -1,0 +1,120 @@
+1. rails g resource like event:references user:references
+
+rails g resource favourite movie:references user:references
+
+2. bundle exec rake db:migrate
+
+
+3. /app/models/event.rb
+	has_many :likes, dependent: :destroy
+	has_many :likers, through: :likes, source: :user
+
+4. /app/models/user.rb
+	has_many :registration, :dependent => :destroy
+  	has_many :likes, dependent: :destroy
+  	has_many :liked_events, through: :likes, source: :event
+
+5. /controllers/users_controller
+	def show
+    	@liked_events = @user.liked_events
+  	end
+
+6. /views/users/show.html.erb
+	<% if @liked_events.any? %>
+		<h3>Liked Events</h3>
+
+			<p>
+				<ul>
+					<% @liked_events.each do |event| %>
+						<li><%= event.name %></li>
+					<% end %>
+				</ul>
+
+			</p>
+	<% end %>
+
+7. /controllers/events_controller.rb
+
+	def show
+		@likers = @event.likers
+	end
+
+8. /view/events/show.html.erb
+
+<% if @likers.any? %>
+	<h3> Likers </h3>
+	<ul>
+		<% @likers.each do |user| &>
+			<li><%= user.email %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+
+10. Button hinzufügen für Like:
+
+/config/routes.rb
+  		resources :likes
+
+
+11. /views/show_events.html.erb
+<p><%= button_to 'LIKE', events_likes_path(@event), class: 'button primary' %></p>
+
+12. /controller/likes_controller
+class LikesController < ApplicationController
+	def create
+		@event = Event.find(params[:event_id])
+		unless Like.where(user_id: current_user.id, event_id: @event.id).any?
+			@event.likes.create(user_id: current_user.id)
+			redirect_to @event, notice: "Event wurde geliked"
+	else 
+		redirect_to @event, alert: "Mehrmals-Like is not really möglich"
+		end 
+		
+	end
+end
+
+
+
+Destroy Like Button:
+
+13. /app/views/movie/show.html.erb
+
+
+<p>
+					<% if like = Like.where(user_id: current_user.id, event_id: @event.id).first %>
+
+						<%= link_to 'Dislike', event_like_path(@event.id, like.id), method: :delete,  class: 'button alert' %>
+
+						<% else %>
+
+							<%= button_to 'Like', event_likes_path(@event), class: 'primary button' %>
+						
+						<% end %>
+				</p>
+
+				<% if @likers.any? %>
+
+					<h3>LIKERS</h3>
+					<p>
+						<ul>
+							<% @likers.each do |user| %>
+									<li><%= user.email %></li>
+							<% end %>
+						</ul>
+					</p>
+
+
+def destroy
+		@like = Like.find(params[:id])
+		@like.delete
+		redirect_to event_path(params[:event_id]), alert: "Du hasst erfolgreich einen Dissliked Button gedrückt"		
+	end
+
+
+
+
+
+
+
+	any fehlt bzw macht ärger movie/show
