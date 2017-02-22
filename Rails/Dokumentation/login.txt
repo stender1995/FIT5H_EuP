@@ -6,7 +6,8 @@ USER EINRICHTUNG:
 
 3. bundle install
 
-4. models/user.rb ->   has_secure_password   (AUTOMATISCH EINGEFÜGT!)
+4. models/user.rb ->  
+	 has_secure_password   (AUTOMATISCH EINGEFÜGT!)
 	validates :name, presence: true
   	validates :email, presence: true, format: { with: /(\S+)@(\S+)/ }, uniqueness: { case_sensitive: false }
 
